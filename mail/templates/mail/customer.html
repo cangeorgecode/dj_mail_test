@@ -1,0 +1,48 @@
+{% extends 'mail/base.html' %}
+{% block content %}
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header">
+                  {{ customer.name }}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ customer.id }}</h5>
+                  <p class="card-text">{{ customer.category }}</p>
+                  <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-4">
+            {% for template in templates %}
+            <div class="container pt-2">
+                <div class="card">
+                    <div class="card-header">
+                      {{ template.tag }}
+                    </div>
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">{{ template.text }}</h5> -->
+                        <p id='demo' style='display: none'>{{ template.text }}</p>     
+                        <button type='button' onclick="toggleText()">Click me</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleText() {
+    var text = document.getElementById("demo");
+    if (text.style.display === "none") {
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+}
+</script>
+
+
+{% endblock content %}
